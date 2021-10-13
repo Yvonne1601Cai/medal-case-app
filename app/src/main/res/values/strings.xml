@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Medal Case Application</string>
+    <string name="achievements">Achievements</string>
+    <string name="personal_record_1_name">Longest Run</string>
+    <string name="personal_record_2_name">Highest Elevation</string>
+    <string name="personal_record_3_name">Fastest 5K</string>
+    <string name="personal_record_4_name">10K</string>
+    <string name="personal_record_5_name">Half Marathon</string>
+    <string name="personal_record_6_name">Marathon</string>
+    <string name="virtual_races_1_name">Virtual Half Marathon</string>
+    <string name="virtual_races_2_name">Tokyo-Hakone Ekiden</string>
+    <string name="virtual_races_3_name">Virtual 10K Race</string>
+    <string name="virtual_races_4_name">Hakone Ekiden</string>
+    <string name="virtual_races_5_name">Mizuno Singappore Ekiden 2015</string>
+    <string name="virtual_races_6_name">Virtual 5K Race</string>
+    <string name="action_settings">settings</string>
+    <string name="medal_image">medal image</string>
+</resources>
