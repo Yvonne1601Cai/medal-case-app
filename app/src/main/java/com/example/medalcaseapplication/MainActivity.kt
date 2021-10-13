@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AchievementListAdapter.AchievementOnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
                                 AchievementsSection("Virtual Races", virtualRaces(resources))
                             )
 
-        val achievementsSectionAdapter = AchievementsSectionAdapter(dataSet)
+        val achievementsSectionAdapter = AchievementsSectionAdapter(dataSet, this)
         val recyclerView: RecyclerView = findViewById(R.id.achievements_list_recyclerView)
         recyclerView.adapter = achievementsSectionAdapter
 
@@ -39,5 +39,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         getMenuInflater().inflate(R.menu.action_bar_menu, menu);
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onClick(achievement: Achievement) {
+        Toast.makeText(applicationContext, "${achievement.name} is clicked", Toast.LENGTH_LONG).show()
     }
 }

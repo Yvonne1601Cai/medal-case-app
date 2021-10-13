@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medalcaseapplication.databinding.AchievementItemBinding
 
-class AchievementListAdapter(private val dataSet: Array<Achievement>) :
+class AchievementListAdapter(private val dataSet: Array<Achievement>, private val onClickListener: AchievementOnClickListener) :
     RecyclerView.Adapter<AchievementListAdapter.ViewHolder>() {
 
     /**
@@ -14,8 +14,9 @@ class AchievementListAdapter(private val dataSet: Array<Achievement>) :
      */
     class ViewHolder(val binding: AchievementItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(achievement: Achievement){
+        fun bind(achievement: Achievement, listener: AchievementOnClickListener){
             binding.achievement = achievement
+            binding.achievementOnClick = listener
             binding.executePendingBindings()
         }
     }
@@ -28,9 +29,15 @@ class AchievementListAdapter(private val dataSet: Array<Achievement>) :
     }
 
     // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) = viewHolder.bind(dataSet[position])
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        viewHolder.bind(dataSet[position], onClickListener)
+    }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
+
+    interface AchievementOnClickListener {
+        fun onClick(achievement: Achievement)
+    }
 
 }

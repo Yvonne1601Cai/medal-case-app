@@ -2,11 +2,12 @@ package com.example.medalcaseapplication
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medalcaseapplication.databinding.AchievementSectionItemBinding
 
 
-class AchievementsSectionAdapter(private val dataSet: Array<AchievementsSection>) :
+class AchievementsSectionAdapter(private val dataSet: Array<AchievementsSection>, private val onClickListener: AchievementListAdapter.AchievementOnClickListener) :
     RecyclerView.Adapter<AchievementsSectionAdapter.ViewHolder>() {
 
 
@@ -17,10 +18,10 @@ class AchievementsSectionAdapter(private val dataSet: Array<AchievementsSection>
 
     class ViewHolder(val binding: AchievementSectionItemBinding) : RecyclerView.ViewHolder(binding.root) {
         private val viewPool = RecyclerView.RecycledViewPool()
-        fun bind(achievementsSection: AchievementsSection){
+        fun bind(achievementsSection: AchievementsSection, listener: AchievementListAdapter.AchievementOnClickListener){
             binding.achievementSection = achievementsSection
             binding.achievementItemRecyclerview.setRecycledViewPool(viewPool)
-            binding.achievementItemRecyclerview.adapter = AchievementListAdapter(achievementsSection.achievements)
+            binding.achievementItemRecyclerview.adapter = AchievementListAdapter(achievementsSection.achievements, listener)
             val achievedNum = getNumOfAchievedRecord(achievementsSection.achievements)
             val numOfAchievements = achievementsSection.achievements.size
             if(achievedNum < numOfAchievements){
@@ -50,7 +51,7 @@ class AchievementsSectionAdapter(private val dataSet: Array<AchievementsSection>
 
     // Replace the contents of a view (invoked by the layout manager)
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) = viewHolder.bind(dataSet[position])
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) = viewHolder.bind(dataSet[position], onClickListener)
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 

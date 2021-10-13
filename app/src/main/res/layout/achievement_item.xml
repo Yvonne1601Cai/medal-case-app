@@ -4,11 +4,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable name="achievement" type="com.example.medalcaseapplication.Achievement"/>
+        <variable
+            name="achievementOnClick"
+            type="com.example.medalcaseapplication.AchievementListAdapter.AchievementOnClickListener" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foreground="@{achievement.achieved? null:@drawable/grey_overlay}">
+        android:foreground="@{achievement.achieved? null:@drawable/grey_overlay}"
+        android:onClick="@{() ->  achievementOnClick.onClick(achievement)}">
 
 
         <ImageView
